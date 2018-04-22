@@ -16,9 +16,9 @@ In this example, you will need to create 4 IAM roles
 ## Create Lambda Functions
 
 There will be 3 Lambda functions used in this example. 
-* CreateSagemakerNotebook: in this example you're creating an ml.t2.medium Notebook instance. Events in Amazon CloudWatch Events are represented a JSON object. To see an example CloudWatch Evens, follow this [link](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html). Step Functions will take CloudWatch Events as input data, and pass it to CreateSageMakerNotebook function. When new Notebook instance is succesfully created, Lambda will return NotebookInstanceARN, which can be passed on to the next function - CheckSageMakerNotebookStatus
-* CheckSageMakerNotebookStatus: this function will describe current status of new Notebook instance
-* SendEmailNotification: if the new instance is InService, this Lambda function will push a message to SNS
+* [CreateSagemakerNotebook](https://github.com/hongpham/Schedule-provisioning-SageMaker-Notebook/blob/master/bin/Lambda_CheckSageMakerNotebookStatus.py): in this example you're creating an ml.t2.medium Notebook instance. Events in Amazon CloudWatch Events are represented a JSON object. To see an example CloudWatch Evens, follow this [link](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html). Step Functions will take CloudWatch Events as input data, and pass it to CreateSageMakerNotebook function. When new Notebook instance is succesfully created, Lambda will return NotebookInstanceARN, which can be passed on to the next function - CheckSageMakerNotebookStatus
+* [CheckSageMakerNotebookStatus](https://github.com/hongpham/Schedule-provisioning-SageMaker-Notebook/blob/master/bin/Lambda_CheckSageMakerNotebookStatus.py): this function will describe current status of new Notebook instance
+* [SendEmailNotification](https://github.com/hongpham/Schedule-provisioning-SageMaker-Notebook/blob/master/bin/SendEmailNotification.py): if the new instance is InService, this Lambda function will push a message to SNS
 
 
 ## Create Step Functions state machine
