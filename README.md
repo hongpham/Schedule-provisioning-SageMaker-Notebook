@@ -1,4 +1,4 @@
-# Automate-provisioning-SageMaker-Notebook
+# Scheduled Provisioning for SageMaker notebook
 Using Amazon CloudWatch Events to trigger Amazon Step Functions to provisioned SageMaker Notebook instance
 
 ![Architecture Diagram](https://github.com/hongpham/Schedule-provisioning-SageMaker-Notebook/blob/master/images/Architecture%20diagram.png)
