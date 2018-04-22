@@ -1,0 +1,57 @@
+{
+    "Comment": "A simple workflow to start SageMaker Notebook at scheduled time",
+    "StartAt": "CreateSageMakerNotebook",
+    "States": {
+    "CreateSageMakerNotebook": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-west-2:1234567890:function:CreateSageMakerNotebook",
+      "Next": "WaitForNotebook",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    }
+  ,
+      "WaitForNotebook": {
+      "Type": "Wait",
+      "Seconds": 300,
+      "Next": "GetNoteBookStatus"
+    },
+      "GetNoteBookStatus": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-west-2:1234567890:function:CheckSageMakerNotebookStatus",
+      "Next": "SendEmail",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    },
+      "SendEmail": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-west-2:1234567890:function:SendNotebookStatus",
+      "End": true,
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    }
+    }
+}
