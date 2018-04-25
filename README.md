@@ -8,10 +8,11 @@ Using Amazon CloudWatch Events to trigger Amazon Step Functions to provisioned S
 
 ## Create neccessary IAM Roles
 In this example, you will need to create 4 IAM roles
-* IAM roles for Lambda function to create SageMaker notebook and push notification to SNS
-* IAM roles for SageMaker to manage underlying resources
-* IAM roles for Step Functions to trigger Lambda functions
-* IAM roles for CloudWatch event to trigger Step Functions state machine
+* IAM service role for Lambda function to create SageMaker notebook. More details on managing access to Sagemaker resources can be found [here](https://docs.aws.amazon.com/sagemaker/latest/dg/access-control-overview.html) 
+* [Amazon SageMaker role](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html) to manage underlying resources
+* [IAM roles for Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/procedure-create-iam-role.html) to trigger Lambda functions
+* IAM roles for CloudWatch event to trigger Step Functions state machine. Follow this [tutorial](https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-cloudwatch-events-target.html#tutorial-cloudwatch-events-target-step-2) for an example
+* IAM roles for Lambda function to push message to SNS topic. Here is an [example tutorial](https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example-create-iam-role.html)
 
 ## Create Lambda Functions
 
